@@ -1,0 +1,37 @@
+diff --git a/components/audio_board/lyrat_v4_3/board_def.h b/components/audio_board/lyrat_v4_3/board_def.h
+index aa6e72b..00a3941 100644
+--- a/components/audio_board/lyrat_v4_3/board_def.h
++++ b/components/audio_board/lyrat_v4_3/board_def.h
+@@ -57,7 +57,7 @@
+ 
+ extern audio_hal_func_t AUDIO_CODEC_ES8388_DEFAULT_HANDLE;
+ #define AUDIO_CODEC_DEFAULT_CONFIG(){                   \
+-        .adc_input  = AUDIO_HAL_ADC_INPUT_LINE1,        \
++        .adc_input  = AUDIO_HAL_ADC_INPUT_LINE2,        \
+         .dac_output = AUDIO_HAL_DAC_OUTPUT_ALL,         \
+         .codec_mode = AUDIO_HAL_CODEC_MODE_BOTH,        \
+         .i2s_iface = {                                  \
+diff --git a/components/audio_board/lyrat_v4_3/board_pins_config.c b/components/audio_board/lyrat_v4_3/board_pins_config.c
+index 6c0735f..930129c 100644
+--- a/components/audio_board/lyrat_v4_3/board_pins_config.c
++++ b/components/audio_board/lyrat_v4_3/board_pins_config.c
+@@ -35,8 +35,8 @@ esp_err_t get_i2c_pins(i2c_port_t port, i2c_config_t *i2c_config)
+ {
+     AUDIO_NULL_CHECK(TAG, i2c_config, return ESP_FAIL);
+     if (port == I2C_NUM_0 || port == I2C_NUM_1) {
+-        i2c_config->sda_io_num = GPIO_NUM_18;
+-        i2c_config->scl_io_num = GPIO_NUM_23;
++        i2c_config->sda_io_num = GPIO_NUM_33;
++        i2c_config->scl_io_num = GPIO_NUM_32;
+     } else {
+         i2c_config->sda_io_num = -1;
+         i2c_config->scl_io_num = -1;
+@@ -50,7 +50,7 @@ esp_err_t get_i2s_pins(i2s_port_t port, i2s_pin_config_t *i2s_config)
+ {
+     AUDIO_NULL_CHECK(TAG, i2s_config, return ESP_FAIL);
+     if (port == I2S_NUM_0 || port == I2S_NUM_1) {
+-        i2s_config->bck_io_num = GPIO_NUM_5;
++        i2s_config->bck_io_num = GPIO_NUM_27;
+         i2s_config->ws_io_num = GPIO_NUM_25;
+         i2s_config->data_out_num = GPIO_NUM_26;
+         i2s_config->data_in_num = GPIO_NUM_35;
